@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sandbox-connection-close-repro",
+  "main": "src/after.ts",
+  "compatibility_date": "2026-04-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "containers": [
+    {
+      "class_name": "EgressSandbox",
+      "image": "./Dockerfile",
+      "instance_type": "lite",
+      "max_instances": 1
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "class_name": "EgressSandbox", "name": "SANDBOX" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EgressSandbox"] }]
+}
